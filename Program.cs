@@ -1,79 +1,151 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.Design;
 
 namespace Calculadora
+{
+    class Program
     {
-        internal class Program
+        static void Main(string[] args)
         {
-            static void Main(string[] args)
+            Menu();
+        }
+
+        public static void Menu()
+        {
+            Console.WriteLine("Menu:");
+            Console.WriteLine("1 - Somar");
+            Console.WriteLine("2 - Subtrair");
+            Console.WriteLine("3 - Multiplicar");
+            Console.WriteLine("4 - Dividir");
+            Console.WriteLine("5 - Resto da divisão");
+            Console.WriteLine("6 - Potenciação");
+            Console.WriteLine("0 - Sair");
+
+            string opcao = Console.ReadLine();
+            switch(opcao)
             {
-                Console.WriteLine("Qual operação deseja fazer?");
-                Console.WriteLine("1 - Adição");
-                Console.WriteLine("2 - Subração");
-                Console.WriteLine("3 - Multiplicação");
-                Console.WriteLine("4 - Divisão \n");
-
-                int operacao = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Digite o primeiro número:");
-                int num1 = int.Parse(Console.ReadLine());
-
-                Console.WriteLine("Digite o segundo número:");
-                int num2 = int.Parse(Console.ReadLine());
-
-                int resultado = 0;
-
-                switch (operacao)
-                {
-                    case 1: 
-                        {
-                            resultado = Adicao(num1, num2);
-                            break;
-                        }
-                    case 2: 
-                        {
-                            resultado = Subtracao(num1, num2);
-                            break;
-                        }
-                    case 3: 
-                        {
-                            resultado = Multiplicacao(num1, num2);
-                            break;
-                        }
-                    case 4: 
-                        {
-                            resultado = Divisao(num1, num2);
-                            break;
-                        }
-                    default:
-                        Console.WriteLine("Número inválido, digite outro número.");
-                        break;
-                }
-                Console.WriteLine("O resultado da operação com os números {0} e {1} é {2}", num1, num2, resultado);
-
-                Console.ReadLine();
-            public static int Adicao (int numero1, int numero2)
-            {
-                int resultado = numero1 + numero2;
-                return resultado;
-            }
-            public static int Subtracao (int numero1, int numero2)
-            {
-                int resultado = numero1 - numero2;
-                return resultado;
-            }
-            public static int Multiplicacao (int numero1, int numero2)
-            {
-                int resultado = numero1 * numero2;
-                return resultado;
-            }
-            public static int Divisao (int numero1, int numero2)
-            {
-                int resultado = numero1 / numero2;
-                return resultado;
+                case "1": 
+                    Somar();
+                    break;
+                case "2":
+                    Subtrair();
+                    break;
+                case "3":
+                    Multiplicar();
+                    break;
+                case "4":
+                    Dividir();
+                    break;
+                case "5":
+                    EncontrarRestoDivisao();
+                    break;
+                case "6":
+                    CalcularPotenciacao();
+                    break;
+                case "0":
+                    break;
+                default:
+                    Menu();
+                    break;
             }
         }
+
+        public static void Somar()
+        {
+            double valor1, valor2;
+
+            Console.WriteLine("Entre com o primeiro valor:");
+            valor1 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Entre com o segundo valor:");
+            valor2 = double.Parse(Console.ReadLine());
+
+            Console.WriteLine($"{valor1} + {valor2} = {valor1 + valor2}");
+            Console.ReadLine();
+            Menu();
+        }
+
+        public static void Subtrair()
+        {
+            double valor1, valor2;
+
+            Console.WriteLine("Entre com o primeiro valor:");
+            valor1 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Entre com o segundo valor:");
+            valor2 = double.Parse(Console.ReadLine());
+
+            Console.WriteLine($"{valor1} - {valor2} = {valor1 - valor2}");
+            Console.ReadLine();
+            Menu();
+        }
+
+        public static void Multiplicar()
+        {
+            double valor1, valor2;
+
+            Console.WriteLine("Entre com o primeiro valor:");
+            valor1 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Entre com o segundo valor:");
+            valor2 = double.Parse(Console.ReadLine());
+
+            Console.WriteLine($"{valor1} * {valor2} = {valor1 * valor2}");
+            Console.ReadLine();
+            Menu();
+        }
+
+        public static void Dividir()
+        {
+            double dividendo, divisor;
+
+            Console.WriteLine("Informe o dividendo:");
+            dividendo = double.Parse(Console.ReadLine());
+            Console.WriteLine("informe o divisor:");
+            divisor = double.Parse(Console.ReadLine());
+            
+            if (divisor != 0)
+            {
+                Console.WriteLine($"{dividendo} / {divisor} = {dividendo /divisor}");
+            }
+            else
+            {
+                Console.WriteLine("Não é possivel dividir por zero");
+            }
+            Console.ReadLine();
+            Menu();
+        }
+        //Desafio de criar uma opção de retorno do resto da divisão
+        public static void EncontrarRestoDivisao()
+        {
+            double dividendo, divisor;
+
+            Console.WriteLine("Informe o dividendo:");
+            dividendo = double.Parse(Console.ReadLine());
+            Console.WriteLine("Informe o divisor:");
+            divisor = double.Parse(Console.ReadLine());
+
+            if (divisor != 0)
+            {
+                Console.WriteLine($"Resto entre {dividendo} e {divisor} = {dividendo % divisor}");
+            }
+            else
+            {
+                Console.WriteLine("Não é possível dividir por zero.");
+            }
+            Console.ReadLine();
+            Menu();
+        }
+        //Segundo desafio - Criar uma opção que retorne o resultado da potenciação de uma determinada base pelo seu expoente. Ex: **2³ = 8**.
+        public static void CalcularPotenciacao()
+        {
+            double basePotenciacao, expoente;
+
+            Console.WriteLine("Informe a base:");
+            basePotenciacao = double.Parse(Console.ReadLine());
+            Console.WriteLine("Informe o expoente:");
+            expoente = double.Parse(Console.ReadLine());
+
+            Console.WriteLine($"{basePotenciacao} elevado a {expoente} = {Math.Pow(basePotenciacao, expoente)}");
+            Console.ReadLine();
+            Menu();
+        }
     }
+}
